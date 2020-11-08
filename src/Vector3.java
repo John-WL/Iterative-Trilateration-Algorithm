@@ -34,10 +34,6 @@ public class Vector3 {
         return new Vector3(x * scale, y * scale, z * scale);
     }
 
-    public Vector3 scaled(double scaleX, double scaleY, double scaleZ) {
-        return new Vector3(x * scaleX, y * scaleY, z * scaleZ);
-    }
-
     /**
      * If magnitude is negative, we will return a vector facing the opposite direction.
      */
@@ -47,13 +43,6 @@ public class Vector3 {
         }
         double scaleRequired = magnitude / magnitude();
         return scaled(scaleRequired);
-    }
-
-    public double distance(Vector3 other) {
-        double xDiff = x - other.x;
-        double yDiff = y - other.y;
-        double zDiff = z - other.z;
-        return Math.sqrt(xDiff * xDiff + yDiff * yDiff + zDiff * zDiff);
     }
 
     public double magnitude() {
@@ -72,40 +61,8 @@ public class Vector3 {
         return this.scaled(1 / magnitude());
     }
 
-    public double dotProduct(Vector3 other) {
-        return x * other.x + y * other.y + z * other.z;
-    }
-
     public boolean isZero() {
         return x == 0 && y == 0 && z == 0;
-    }
-
-    public double angle(Vector3 v) {
-        double mag2 = magnitudeSquared();
-        double vmag2 = v.magnitudeSquared();
-        double dot = dotProduct(v);
-        return Math.acos(dot / Math.sqrt(mag2 * vmag2));
-    }
-
-    public Vector3 crossProduct(Vector3 v) {
-        double tx = y * v.z - z * v.y;
-        double ty = z * v.x - x * v.z;
-        double tz = x * v.y - y * v.x;
-        return new Vector3(tx, ty, tz);
-    }
-
-    public Vector3 projectOnto(Vector3 vectorToProjectOnto) {
-        return vectorToProjectOnto.scaled(this.dotProduct(vectorToProjectOnto)/vectorToProjectOnto.magnitudeSquared());
-    }
-
-    public double angleWith(Vector3 vector) {
-        double cosine = this.dotProduct(vector)/(this.magnitude()*vector.magnitude());
-        return Math.acos(cosine);
-    }
-
-    private Vector3 triangleEdgePosition(final Vector3 start, final Vector3 dir, final Vector3 p) {
-        final double u = clamp(p.minus(start).dotProduct(dir)/dir.dotProduct(dir), 0, 1);
-        return start.plus(dir.scaled(u));
     }
 
     private double clamp(final double valueToClamp, final double min, final double max) {
