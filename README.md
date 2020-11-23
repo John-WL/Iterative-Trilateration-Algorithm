@@ -1,12 +1,11 @@
 # Iterative-Trilateration-Algorithm
 Extremely simple algorithm that computes trilateration iteratively
 
-This algorithm approximates the actual position of a body B into 3D space using 
-"anchor points" A. 
+This algorithm approximates the actual position of a body B into 3D space using "anchor points" A. 
 
 It exploits the convergant behavior of successive approximations of the position of the body. 
 
-The As are the equivalent to WiFi signal source positions, or satelite positions. 
+The As are analogous to WiFi signal source positions, or satelite positions, for example. 
 
 For this algorithm to work, you need to know precisely where your As will be at any given time. 
 
