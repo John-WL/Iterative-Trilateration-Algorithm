@@ -48,7 +48,7 @@ public class IterativeTrilaterationConvergence {
         // if the amount of noise is too high, you're going to want to set it to a lower value
         // basically trial and error unfortunately
         double convergenceRate = 1;
-        
+
         double vectorLengthDifference = actualSensorPosition.minus(previousGuessedPosition).magnitude() - distanceReadBySensor;
         Vector3 delta = actualSensorPosition.minus(previousGuessedPosition).scaledToMagnitude(vectorLengthDifference*convergenceRate);
         return previousGuessedPosition.plus(delta);
